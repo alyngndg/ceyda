@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Mesajım Var! 💗</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFEBEE;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: #FF69B4; 
+            font-size: 24px;
+            animation: floatUp 6s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            z-index: 10;
+            max-width: 380px;
+            width: 85%;
+            backdrop-filter: blur(5px);
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover { transform: scale(1.05); background-color: #FF1493; }
+
+        .secret-content {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .secret-content img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .message-text {
+            font-size: 18px;
+            color: #4A4A4A;
+            font-weight: bold;
+            line-height: 1.5;
+            margin: 10px 0 20px 0;
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 105, 180, 0.3);
+            color: #FF69B4;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.4;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="card">
+        <div id="initialState">
+            <h2 style="color: #FF69B4; margin-bottom: 20px;">Sana bir mesajım var</h2>
+            <button class="btn" onclick="revealMessage()">(Tıklaaaa)</button>
+        </div>
+
+        <div id="secretState" class="secret-content">
+            <img src="BURAYA_KOPYALADIGIN_LINKI_YAPISTIR" alt="Motivasyon">
+            <p class="message-text">Calculus ha! Calculus mu çalışıyosun. Çok kolay. Yapabilirsin. Sana güveniyorum</p>
+        </div>
+
+        <div class="footer-note">
+            iyi ki varsınn seni çok seviyorum umarım hoşuna gitmiştir😭 calculus gerçek değil bu arada btw <br><strong>-Aleyna</strong>
+        </div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const container = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💗';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            container.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+        setInterval(createHeart, 300);
+
+        function revealMessage() {
+            document.getElementById('initialState').style.display = 'none';
+            document.getElementById('secretState').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
